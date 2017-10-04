@@ -27,16 +27,28 @@ class Home extends React.Component<RouteComponentProps<Props>, {}> {
     }
 }
 
+export class Header extends React.Component<RouteComponentProps<{}>, {}> {
+    go = (e) => {
+        this.props.history.push("/home")
+    };
+
+    render() {
+        return (
+            <div className="ui menu">
+                <Link className="red item" to='/'>Home</Link>
+                <Link to='/about' className="orange item">About</Link>
+                <button onClick={this.go}>Go Home</button>
+            </div>
+        );
+    }
+}
+
 export class App extends React.Component<Props, {}> {
     render() {
         return (
             <HashRouter>
                 <div>
-                    <div className="ui menu">
-                        <Link className="red item" to='/'>Home</Link>
-                        <Link to='/about' className="orange item">About</Link>
-                    </div>
-
+                    <Route component={Header} />
                     <Switch>
                         <div className="ui segment">
                             <Route exact path='/' component={Home} />
