@@ -1,23 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import BasicExample from "./Basic";
-
+import { App } from "./Hello";
 
 import "../Style.css";
 
 type Props = {
-
-}
-
-class App extends React.Component<{}, {}> {
-
-    render() {
-        return(
-            <div>
-                <BasicExample/>
-            </div>
-        );
-    }
 
 }
 
