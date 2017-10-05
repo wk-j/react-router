@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 class Home extends React.Component {
     render() {
@@ -46,10 +46,12 @@ class State extends React.Component {
 class SubArea extends React.Component {
     render() {
         return (
-            <div>
-                <Route exact path="/topics/rendering" render={() => (<h1>Rendering</h1>)} />
-                <Route exact path="/topics/components" component={Compoents} />
-                <Route exact path="/topics/props-v-state" component={State} />
+            <div className="ui segment">
+                <Switch>
+                    <Route exact path="/topics/rendering" render={() => (<h1>Rendering</h1>)} />
+                    <Route exact path="/topics/components" component={Compoents} />
+                    <Route exact path="/topics/props-v-state" component={State} />
+                </Switch>
             </div>
         );
     }
@@ -95,9 +97,12 @@ const BasicExample = () => (
         <div>
             <Menu />
             <hr />
-            <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/topics" component={Topics} />
+
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/about" component={About} />
+                <Route path="/topics" component={Topics} />
+            </Switch>
         </div>
     </Router>
 )
