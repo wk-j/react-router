@@ -1,18 +1,25 @@
 import * as React from "react";
-
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 
-const Home = () => (
-    <div>
-        <h2>Home</h2>
-    </div>
-)
+class Home extends React.Component {
+    render() {
+        return (
+            <div>
+                <h2>Home</h2>
+            </div>
+        );
+    }
+}
 
-const About = () => (
-    <div>
-        <h2>About</h2>
-    </div>
-)
+class About extends React.Component {
+    render() {
+        return (
+            <div>
+                <h2>About</h2>
+            </div>
+        );
+    }
+}
 
 class Topic extends React.Component {
     render() {
@@ -40,10 +47,7 @@ class SubArea extends React.Component {
     render() {
         return (
             <div>
-                <Route exact path="/topics/rendering" render={() => (
-                    <h1>Rendering</h1>
-                )} />
-
+                <Route exact path="/topics/rendering" render={() => (<h1>Rendering</h1>)} />
                 <Route exact path="/topics/components" component={Compoents} />
                 <Route exact path="/topics/props-v-state" component={State} />
             </div>
@@ -55,7 +59,6 @@ class Topics extends React.Component {
     render() {
         return (
             <div>
-
                 <h2>Topics</h2>
                 <ul>
                     <li>
@@ -77,7 +80,7 @@ class Topics extends React.Component {
 
 class Menu extends React.Component {
     render() {
-        return(
+        return (
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About</Link></li>
@@ -91,15 +94,12 @@ const BasicExample = () => (
     <Router>
         <div>
             <Menu />
-
             <hr />
-
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/topics" component={Topics} />
         </div>
     </Router>
 )
-
 
 export const Nested = BasicExample;
