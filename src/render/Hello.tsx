@@ -12,6 +12,18 @@ class About extends React.Component {
     }
 }
 
+class Home2 extends React.Component {
+    render() {
+        return (<h1>Home2</h1>)
+    }
+}
+
+class Home1 extends React.Component {
+    render() {
+        return (<h1>Home1</h1>)
+    }
+}
+
 class Home extends React.Component<RouteComponentProps<Props>, {}> {
     click = (e) => {
         this.props.history.push("/about");
@@ -22,6 +34,20 @@ class Home extends React.Component<RouteComponentProps<Props>, {}> {
             <div>
                 <h1>Home</h1>
                 <button onClick={this.click}>About</button>
+
+                <div className="ui segment">
+                    <div className="ui menu">
+                        <Link className="red item" to='/home/h1'>Home 1</Link>
+                        <Link to='/home/h2' className="orange item">Home 2</Link>
+                    </div>
+                </div>
+
+                <Switch>
+                    <div className="ui segment">
+                        <Route exact path='/home/h1' component={Home1} />
+                        <Route exact path='/home/h2' component={Home2} />
+                    </div>
+                </Switch>
             </div>
         );
     }
