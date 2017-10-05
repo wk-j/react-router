@@ -1,5 +1,6 @@
 import * as React from "react";
 import { HashRouter as Router, Route, Link, Switch } from "react-router-dom";
+import styled from "styled-components";
 
 type R = 
       "/"
@@ -12,7 +13,11 @@ type R =
 
 let r = (r: R) => r;
 
-class Home extends React.Component {
+type Props = {
+    className? : string
+}
+
+class Home extends React.Component<Props, {}> {
     render() {
         return (
             <div>
@@ -22,7 +27,7 @@ class Home extends React.Component {
     }
 }
 
-class About extends React.Component {
+class About extends React.Component<Props, {}> {
     render() {
         return (
             <div>
@@ -32,7 +37,7 @@ class About extends React.Component {
     }
 }
 
-class Topic extends React.Component {
+class Topic extends React.Component<Props, {}> {
     render() {
         return (
             <div>
@@ -42,17 +47,21 @@ class Topic extends React.Component {
     }
 }
 
-class Compoents extends React.Component {
+class Compoents extends React.Component<Props, {}> {
     render() {
         return (<h1>Components</h1>)
     }
 }
 
-class State extends React.Component {
+class _State extends React.Component<Props, {}> {
     render() {
-        return (<h1>Stats</h1>);
+        return (<h1 className={this.props.className}>Stats</h1>);
     }
 }
+
+const State = styled(_State)`
+    background: grey;
+`;
 
 class SubArea extends React.Component {
     render() {
