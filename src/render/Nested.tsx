@@ -21,7 +21,6 @@ class Topic extends React.Component {
                 Topic
             </div>
         );
-
     }
 }
 
@@ -31,36 +30,59 @@ class Compoents extends React.Component {
     }
 }
 
+class State extends React.Component {
+    render() {
+        return (<h1>Stats</h1>);
+    }
+}
+
+class SubArea extends React.Component {
+    render() {
+        return (
+            <div>
+                <Route exact path="/topics/rendering" render={() => (
+                    <h1>Rendering</h1>
+                )} />
+
+                <Route exact path="/topics/components" component={Compoents} />
+                <Route exact path="/topics/props-v-state" component={State} />
+            </div>
+        );
+    }
+}
+
 class Topics extends React.Component {
     render() {
-        let match = {
-            url: "/topics",
-            path: "topic"
-        };
         return (
             <div>
 
                 <h2>Topics</h2>
                 <ul>
                     <li>
-                        <Link to={`${match.url}/rendering`}> Rendering with React </Link>
+                        <Link to="/topics/rendering"> Rendering with React </Link>
                     </li>
                     <li>
-                        <Link to={`${match.url}/components`}> Components </Link>
+                        <Link to="/topics/components"> Components </Link>
                     </li>
                     <li>
-                        <Link to={`${match.url}/props-v-state`}> Props v. State </Link>
+                        <Link to="/topics/props-v-state"> Props v. State </Link>
                     </li>
                 </ul>
 
-                <Route exact path="/topics/rendering" render={() => (
-                    <h3>Rendering</h3>
-                )} />
-
-                <Route exact path="/topics/components" component={Compoents} />
-
+                <SubArea />
             </div>
+        );
+    }
+}
 
+class Menu extends React.Component {
+    render() {
+        return(
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/topics">Topics</Link></li>
+            </ul>
         );
     }
 }
@@ -68,11 +90,7 @@ class Topics extends React.Component {
 const BasicExample = () => (
     <Router>
         <div>
-            <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/topics">Topics</Link></li>
-            </ul>
+            <Menu />
 
             <hr />
 
