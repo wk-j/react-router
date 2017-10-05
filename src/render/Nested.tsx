@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HashRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import styled from "styled-components";
 
 type R = 
@@ -114,7 +114,7 @@ class Menu extends React.Component {
 }
 
 const BasicExample = () => (
-    <Router>
+    <HashRouter>
         <div>
             <Menu />
             <hr />
@@ -125,7 +125,7 @@ const BasicExample = () => (
                 <Route path="/topics" component={Topics} />
             </Switch>
         </div>
-    </Router>
+    </HashRouter>
 )
 
 export const Nested = BasicExample;
