@@ -1,5 +1,16 @@
 import * as React from "react";
-import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { HashRouter as Router, Route, Link, Switch } from "react-router-dom";
+
+type R = 
+      "/"
+    | "/about"
+    | "/home"
+    | "/topics"
+    | "/topics/rendering"
+    | "/topics/props-v-state"
+    | "/topics/components"
+
+let r = (r: R) => r;
 
 class Home extends React.Component {
     render() {
@@ -48,9 +59,10 @@ class SubArea extends React.Component {
         return (
             <div className="ui segment">
                 <Switch>
-                    <Route exact path="/topics/rendering" render={() => (<h1>Rendering</h1>)} />
-                    <Route exact path="/topics/components" component={Compoents} />
-                    <Route exact path="/topics/props-v-state" component={State} />
+                    <Route exact path={r("/topics")} render={() => (<h1>Default</h1>)} />
+                    <Route exact path={r("/topics/rendering")} render={() => (<h1>Rendering</h1>)} />
+                    <Route exact path={r("/topics/components")} component={Compoents} />
+                    <Route exact path={r("/topics/props-v-state")} component={State} />
                 </Switch>
             </div>
         );
@@ -64,13 +76,13 @@ class Topics extends React.Component {
                 <h2>Topics</h2>
                 <ul>
                     <li>
-                        <Link to="/topics/rendering"> Rendering with React </Link>
+                        <Link to={r("/topics/rendering")}> Rendering with React </Link>
                     </li>
                     <li>
-                        <Link to="/topics/components"> Components </Link>
+                        <Link to={r("/topics/components")}> Components </Link>
                     </li>
                     <li>
-                        <Link to="/topics/props-v-state"> Props v. State </Link>
+                        <Link to={r("/topics/props-v-state")}> Props v. State </Link>
                     </li>
                 </ul>
 
@@ -84,9 +96,9 @@ class Menu extends React.Component {
     render() {
         return (
             <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/topics">Topics</Link></li>
+                <li><Link to={r("/")}>Home</Link></li>
+                <li><Link to={r("/about")}>About</Link></li>
+                <li><Link to={r("/topics")}>Topics</Link></li>
             </ul>
         );
     }
