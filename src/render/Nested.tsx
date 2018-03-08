@@ -67,13 +67,13 @@ class Components extends React.Component<Props & RouterParams, {}> {
     }
 }
 
-class _State extends React.Component<Props, {}> {
+class State extends React.Component<Props, {}> {
     render() {
         return (<h1 className={this.props.className}>Stats</h1>);
     }
 }
 
-const State = styled(_State) `
+const StyledState = styled(State) `
     background: grey;
 `;
 
@@ -85,7 +85,7 @@ class SubArea extends React.Component {
                     <Route exact path={r("/topics")} render={() => (<h1>Default</h1>)} />
                     <Route exact path={r("/topics/rendering")} render={() => (<h1>Rendering</h1>)} />
                     <Route exact path={r("/topics/components/:a/:b")} component={Components} />
-                    <Route exact path={r("/topics/props-v-state")} component={State} />
+                    <Route exact path={r("/topics/props-v-state")} component={StyledState} />
                 </Switch>
             </div>
         );
