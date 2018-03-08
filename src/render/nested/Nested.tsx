@@ -1,7 +1,7 @@
 import * as React from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import styled from "styled-components";
-import { withRouter } from "react-router";
+import { withRouter, RouteProps, Router, RouterProps } from "react-router";
 
 type R =
     "/"
@@ -12,12 +12,13 @@ type R =
     | "/topics/props-v-state"
     | "/topics/components/:a/:b"
 
-let r = (r: R) => r;
-
 type Props = {
     className?: string
-    // match?: any
 }
+
+type MyRouteProps = RouteProps & { path?: R }
+
+const MyRoute = (props: MyRouteProps) => <Route {...props} />
 
 class Home extends React.Component<Props, {}> {
     render() {
@@ -61,7 +62,9 @@ class Components extends React.Component<Props & RouterParams, {}> {
                 <h1>
                     {this.props.match.params.a}
                 </h1>
-                {this.props.match.params.b}
+                <h1>
+                    {this.props.match.params.b}
+                </h1>
             </div>
         );
     }
@@ -74,7 +77,8 @@ class State extends React.Component<Props, {}> {
 }
 
 const StyledState = styled(State) `
-    background: grey;
+    padding: 5px;
+    color: green;
 `;
 
 class SubArea extends React.Component {
@@ -82,10 +86,10 @@ class SubArea extends React.Component {
         return (
             <div className="ui segment">
                 <Switch>
-                    <Route exact path={r("/topics")} render={() => (<h1>Default</h1>)} />
-                    <Route exact path={r("/topics/rendering")} render={() => (<h1>Rendering</h1>)} />
-                    <Route exact path={r("/topics/components/:a/:b")} component={Components} />
-                    <Route exact path={r("/topics/props-v-state")} component={StyledState} />
+                    <MyRoute exact path="/topics" render={() => (<h1>Default</h1>)} />
+                    <MyRoute exact path="/topics/rendering" render={() => (<h1>Rendering</h1>)} />
+                    <MyRoute exact path="/topics/components/:a/:b" component={Components} />
+                    <MyRoute exact path="/topics/props-v-state" component={StyledState} />
                 </Switch>
             </div>
         );
@@ -99,13 +103,13 @@ class Topics extends React.Component {
                 <h2>Topics</h2>
                 <ul>
                     <li>
-                        <Link to={r("/topics/rendering")}> Rendering with React </Link>
+                        <Link to="/topics/rendering"> Rendering with React </Link>
                     </li>
                     <li>
-                        <Link to={"/topics/components/a/b"}> Components </Link>
+                        <Link to="/topics/components/a/b"> Components </Link>
                     </li>
                     <li>
-                        <Link to={r("/topics/props-v-state")}> Props v. State </Link>
+                        <Link to="/topics/props-v-state"> Props v. State </Link>
                     </li>
                 </ul>
 
@@ -119,9 +123,9 @@ class Menu extends React.Component {
     render() {
         return (
             <ul>
-                <li><Link to={r("/")}>Home</Link></li>
-                <li><Link to={r("/about")}>About</Link></li>
-                <li><Link to={r("/topics")}>Topics</Link></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/topics">Topics</Link></li>
             </ul>
         );
     }
@@ -134,9 +138,9 @@ const BasicExample = () => (
             <hr />
 
             <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/about" component={About} />
-                <Route path="/topics" component={Topics} />
+                <MyRoute exact path="/" component={Home} />
+                <MyRoute path="/about" component={About} />
+                <MyRoute path="/topics" component={Topics} />
             </Switch>
         </div>
     </HashRouter>
