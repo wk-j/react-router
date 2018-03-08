@@ -1,20 +1,22 @@
 import * as React from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import styled from "styled-components";
+import { withRouter } from "react-router";
 
-type R = 
-      "/"
+type R =
+    "/"
     | "/about"
     | "/home"
     | "/topics"
     | "/topics/rendering"
     | "/topics/props-v-state"
-    | "/topics/components"
+    | "/topics/components/:a/:b"
 
 let r = (r: R) => r;
 
 type Props = {
-    className? : string
+    className?: string
+    // match?: any
 }
 
 class Home extends React.Component<Props, {}> {
@@ -47,9 +49,21 @@ class Topic extends React.Component<Props, {}> {
     }
 }
 
-class Compoents extends React.Component<Props, {}> {
+type RouterParams = {
+    match: { params: { a: string, b: string } }
+}
+
+class Components extends React.Component<Props & RouterParams, {}> {
     render() {
-        return (<h1>Components</h1>)
+        console.log(this.props);
+        return (
+            <div>
+                <h1>
+                    {this.props.match.params.a}
+                </h1>
+                {this.props.match.params.b}
+            </div>
+        );
     }
 }
 
@@ -59,7 +73,7 @@ class _State extends React.Component<Props, {}> {
     }
 }
 
-const State = styled(_State)`
+const State = styled(_State) `
     background: grey;
 `;
 
@@ -70,7 +84,7 @@ class SubArea extends React.Component {
                 <Switch>
                     <Route exact path={r("/topics")} render={() => (<h1>Default</h1>)} />
                     <Route exact path={r("/topics/rendering")} render={() => (<h1>Rendering</h1>)} />
-                    <Route exact path={r("/topics/components")} component={Compoents} />
+                    <Route exact path={r("/topics/components/:a/:b")} component={Components} />
                     <Route exact path={r("/topics/props-v-state")} component={State} />
                 </Switch>
             </div>
@@ -88,7 +102,7 @@ class Topics extends React.Component {
                         <Link to={r("/topics/rendering")}> Rendering with React </Link>
                     </li>
                     <li>
-                        <Link to={r("/topics/components")}> Components </Link>
+                        <Link to={"/topics/components/a/b"}> Components </Link>
                     </li>
                     <li>
                         <Link to={r("/topics/props-v-state")}> Props v. State </Link>
