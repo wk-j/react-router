@@ -1,15 +1,19 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true,
-        //"moduleResolution": "node",
-        "module": "commonjs",
-        "target": "es2015",
         "jsx": "react",
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es6",
+        "lib": [
+            "dom",
+            "es6"
+        ],
         "sourceMap": true,
-        //"allowJs": true,
-        "noImplicitAny": false
+        "rootDir": "."
     },
     "exclude": [
-        "node_modules"
+        "node_modules",
+        ".vscode-test"
     ]
 }
