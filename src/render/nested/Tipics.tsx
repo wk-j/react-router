@@ -2,6 +2,7 @@ import { MyLink, MyRoute } from "./MyTypes";
 import * as React from "react"
 import { Link, Switch } from "react-router-dom";
 import styled from "styled-components";
+import { Home } from "./Home";
 
 type Props = {
     className?: string
@@ -77,6 +78,9 @@ export class Topics extends React.Component {
                     </li>
                     <li>
                         <MyLink to="/topics/props-v-state"> Props v. State </MyLink>
+                    </li>
+                    <li>
+                        <MyLink to="/"> Home </MyLink>
                     </li>
                 </ul>
 

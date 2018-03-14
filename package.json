@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/main.js",
-  "scripts": {
-    "watch": "webpack --watch",
-    "server": "python -m SimpleHTTPServer"
-  },
+  "scripts": {},
   "author": "wk-j",
   "license": "ISC",
   "devDependencies": {
