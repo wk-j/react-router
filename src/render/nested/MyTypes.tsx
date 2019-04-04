@@ -10,6 +10,7 @@ export type R =
     | "/topics/props-v-state"
     | "/topics/components/:a/:b"
     | "/topics/components/"
+    | "/topics/redirect"
 
 export const MyRoute = (props: RouteProps & { path?: R }) => <Route {...props} />
 export const MyLink = (props: LinkProps & { to?: R }) => <Link {...props} />

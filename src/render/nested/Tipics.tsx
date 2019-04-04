@@ -1,6 +1,6 @@
 import { MyLink, MyRoute } from "./MyTypes";
 import * as React from "react"
-import { Link, Switch } from "react-router-dom";
+import { Link, Switch, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { Home } from "./Home";
 
@@ -44,7 +44,7 @@ class State extends React.Component<Props, {}> {
     }
 }
 
-const StyledState = styled(State) `
+const StyledState = styled(State)`
     padding: 5px;
     color: green;
 `;
@@ -58,6 +58,7 @@ class SubArea extends React.Component {
                     <MyRoute exact path="/topics/rendering" render={() => (<h1>Rendering</h1>)} />
                     <MyRoute exact path="/topics/components/:a/:b" component={Components} />
                     <MyRoute exact path="/topics/props-v-state" component={StyledState} />
+                    <MyRoute exact path="/topics/redirect" component={() => (<Redirect to="/" />)} />
                 </Switch>
             </div>
         );
@@ -78,6 +79,9 @@ export class Topics extends React.Component {
                     </li>
                     <li>
                         <MyLink to="/topics/props-v-state"> Props v. State </MyLink>
+                    </li>
+                    <li>
+                        <MyLink to="/topics/redirect"> Redirect to Home </MyLink>
                     </li>
                     <li>
                         <MyLink to="/"> Home </MyLink>
